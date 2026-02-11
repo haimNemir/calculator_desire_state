@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: calculator
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: / # This rule is used to rewrite temperarily the path of the request to the root path ("/"), and after that we define that the each request that came to root ("/") will route to frontend service (clusterIP). And he will get the full path of the request and will route to the backend service (clusterIP) by the path of the request. For example, if we send a request to "calculator.local/api/add?a=1&b=2", the ingress will rewrite the path to "/" and route to frontend service, and then the frontend service will route to backend service with the full path of the request "/api/add?a=1&b=2". This way we can easily manage our services and route the requests to the right service without changing the path of the request. And if we had more services, we could easily route the requests to the right service by changing the path of the request in the ingress rules here: spec.rules.http.backend.service  
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service: # Here we define the backend service that will receive the requests that match the path defined in the rules above.
+                name: {{ .Values.frontend.service.name }}
+                port:
+                  number: {{ .Values.frontend.service.port }}

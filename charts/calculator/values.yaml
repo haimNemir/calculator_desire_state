@@ -10,6 +10,14 @@ backend:
   service:
     name: backend
     port: 5000
+  db:
+    enabled: true
+    host: mysql
+    port: 3306
+    database: calculator
+    secretName: mysql-credentials
+    userKey: username
+    passwordKey: password
 
 frontend:
   replicas: 1
@@ -26,4 +34,14 @@ ingress:
   className: nginx
   host: calculator.local
   path: /
+
+mysql:
+  enabled: true
+  serviceName: mysql
+  database: calculator
+  secretName: mysql-credentials
+  userKey: username
+  passwordKey: password
+  rootPasswordKey: root-password
+
 

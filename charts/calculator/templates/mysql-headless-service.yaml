@@ -1,0 +1,14 @@
+{{- if .Values.mysql.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.mysql.serviceName }}-headless
+spec:
+  clusterIP: None # This makes the service headless, which means it will not have a cluster IP and will not load balance traffic. Instead, it will return the IP addresses of the pods that match the selector.
+  ports:
+    - name: mysql
+      port: 3306
+      targetPort: 3306
+  selector:
+    app: mysql
+{{- end }}

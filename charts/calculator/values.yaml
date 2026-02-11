@@ -1,0 +1,29 @@
+# In this file we define the variables that changing regularly in our chart, such as replicas, image tags, service ports, etc. This allows us to easily update these values without modifying the template files directly.
+# In the each block code we define the variables for another file, and there you can get variables from here by user this format: {{ .Values.variableName }}. For example, in the backend-deployment.yaml file, we can get the number of replicas by using {{ .Values.backend.replicas }}. This way we can easily manage and update our chart values in one place.
+# Just notice - this file name is "values.yaml" and when you want to use the values here you need to use the format of "Values.variable_name" because you use the "Value" object of HELM to access the values defined in this file.
+backend:
+  replicas: 1
+  image:
+    repository: calculator-backend
+    tag: dev
+    pullPolicy: IfNotPresent
+  service:
+    name: backend
+    port: 5000
+
+frontend:
+  replicas: 1
+  image:
+    repository: calculator-frontend
+    tag: dev
+    pullPolicy: IfNotPresent
+  service:
+    name: frontend
+    port: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  host: calculator.local
+  path: /
+

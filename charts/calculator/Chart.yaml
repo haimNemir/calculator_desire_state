@@ -1,0 +1,8 @@
+# This file is for Helm, to recognize witch version to install.
+apiVersion: v2
+name: calculator
+description: Calculator app (frontend + backend)
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+

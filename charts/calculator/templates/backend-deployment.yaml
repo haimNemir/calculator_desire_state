@@ -21,14 +21,33 @@ spec:
           ports:
             - name: http
               containerPort: 5000
+          env:
+            - name: DB_HOST
+              value: {{ .Values.backend.db.host | quote }}
+            - name: DB_PORT
+              value: {{ .Values.backend.db.port | quote }}
+            - name: DB_NAME
+              value: {{ .Values.backend.db.database | quote }}
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.backend.db.secretName }}
+                  key: {{ .Values.backend.db.userKey }}
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.backend.db.secretName }}
+                  key: {{ .Values.backend.db.passwordKey }}
+          
           readinessProbe:
             httpGet:
-              path: /health
+              path: /health/db
               port: http
-            initialDelaySeconds: 3
+            initialDelaySeconds: 5
             periodSeconds: 5
             timeoutSeconds: 2
             failureThreshold: 3
+
           livenessProbe:
             httpGet:
               path: /health

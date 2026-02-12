@@ -1,3 +1,14 @@
+# - We use a StatefulSet for MySQL because a database is a stateful workload that requires stable pod identity and persistent storage.
+#   StatefulSet guarantees ordered startup and shutdown, which is important for database reliability.
+#   Each pod gets a consistent name (e.g., mysql-0) and keeps the same attached Persistent Volume.
+#   This ensures data is not lost even if the pod restarts or is rescheduled.
+# - A Headless Service is required by the StatefulSet to provide stable DNS entries for each pod.
+#   It allows direct resolution such as mysql-0.mysql-headless, which is essential for identity and potential future replication setups.
+#   The headless service does not perform load balancing; it only exposes pod-level DNS records.
+# - A regular ClusterIP Service provides a stable and abstracted access point (mysql:3306) for application components like the backend.
+#   It hides internal pod details and allows the backend to connect without knowing specific pod names.
+#   This architecture cleanly separates database identity management from application-level connectivity.
+
 {{- if .Values.mysql.enabled }}
 apiVersion: apps/v1
 kind: StatefulSet

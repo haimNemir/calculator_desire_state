@@ -1,0 +1,12 @@
+backend:
+  image:
+    tag: dev
+    pullPolicy: IfNotPresent
+
+frontend:
+  image:
+    tag: dev
+    pullPolicy: IfNotPresent
+
+ingress:
+  host: test.calculator.local

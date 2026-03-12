@@ -1,12 +1,15 @@
 backend:
   image:
+    repository: 757630643687.dkr.ecr.us-east-1.amazonaws.com/calculator-dev-backend
     tag: dev
     pullPolicy: IfNotPresent
 
 frontend:
   image:
+    repository: 757630643687.dkr.ecr.us-east-1.amazonaws.com/calculator-dev-frontend
     tag: dev
     pullPolicy: IfNotPresent
 
 ingress:
-  host: dev.calculator.local
+  host: ""
+

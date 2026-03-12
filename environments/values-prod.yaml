@@ -1,0 +1,14 @@
+backend:
+  replicas: 2
+  image:
+    tag: 1.0.0
+    pullPolicy: IfNotPresent
+
+frontend:
+  replicas: 2
+  image:
+    tag: 1.0.0
+    pullPolicy: IfNotPresent
+
+ingress:
+  host: prod.calculator.local

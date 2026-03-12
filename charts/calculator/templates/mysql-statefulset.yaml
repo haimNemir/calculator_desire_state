@@ -25,6 +25,10 @@ spec:
       labels:
         app: mysql
     spec:
+      volumes:
+        - name: mysql-init
+          configMap:
+            name: mysql-init
       containers:
         - name: mysql
           image: mysql:8.0
@@ -53,6 +57,9 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/lib/mysql
+            - name: mysql-init
+              mountPath: /docker-entrypoint-initdb.d
+              readOnly: true
   volumeClaimTemplates:
     - metadata:
         name: data

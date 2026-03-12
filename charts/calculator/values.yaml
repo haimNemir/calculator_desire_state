@@ -31,7 +31,7 @@ frontend:
 
 ingress:
   enabled: true
-  className: nginx
+  className: albi
   host: calculator.local
   path: /
 

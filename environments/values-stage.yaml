@@ -1,0 +1,14 @@
+backend:
+  replicas: 1
+  image:
+    tag: stage
+    pullPolicy: IfNotPresent
+
+frontend:
+  replicas: 1
+  image:
+    tag: stage
+    pullPolicy: IfNotPresent
+
+ingress:
+  host: stage.calculator.local

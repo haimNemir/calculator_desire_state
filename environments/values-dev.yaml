@@ -1,13 +1,15 @@
 backend:
   image:
     repository: 757630643687.dkr.ecr.us-east-1.amazonaws.com/calculator-dev-backend
-    tag: dev
+    # This tag below is updated by the CI pipeline when a new image is pushed to ECR.
+    tag: sha-3f14a66
     pullPolicy: IfNotPresent
 
 frontend:
   image:
     repository: 757630643687.dkr.ecr.us-east-1.amazonaws.com/calculator-dev-frontend
-    tag: dev
+    # This tag below is updated by the CI pipeline when a new image is pushed to ECR.
+    tag: sha-3f14a66
     pullPolicy: IfNotPresent
 
 ingress:

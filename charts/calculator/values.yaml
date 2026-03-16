@@ -43,5 +43,6 @@ mysql:
   userKey: username
   passwordKey: password
   rootPasswordKey: root-password
-
-
+  persistence:
+    enabled: true
+    size: 1Gi

@@ -29,6 +29,10 @@ spec:
         - name: mysql-init
           configMap:
             name: mysql-init
+{{- if not .Values.mysql.persistence.enabled }}
+        - name: data
+          emptyDir: {}
+{{- end }}
       containers:
         - name: mysql
           image: mysql:8.0
@@ -60,6 +64,7 @@ spec:
             - name: mysql-init
               mountPath: /docker-entrypoint-initdb.d
               readOnly: true
+{{- if .Values.mysql.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
         name: data
@@ -68,5 +73,6 @@ spec:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 1Gi
+            storage: {{ .Values.mysql.persistence.size }}
+{{- end }}
 {{- end }}

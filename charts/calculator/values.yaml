@@ -32,6 +32,7 @@ frontend:
 ingress:
   enabled: true
   className: alb
+  annotations: {}
   host: calculator.local
   path: /
 

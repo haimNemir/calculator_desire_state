@@ -2,16 +2,19 @@ backend:
   image:
     repository: 757630643687.dkr.ecr.us-east-1.amazonaws.com/calculator-dev-backend
     # This tag below is updated by the CI pipeline when a new image is pushed to ECR.
-    tag: sha-5e78b23
+    tag: sha-4f2deb1
     pullPolicy: IfNotPresent
 
 frontend:
   image:
     repository: 757630643687.dkr.ecr.us-east-1.amazonaws.com/calculator-dev-frontend
     # This tag below is updated by the CI pipeline when a new image is pushed to ECR.
-    tag: sha-5e78b23
+    tag: sha-4f2deb1
     pullPolicy: IfNotPresent
 
 ingress:
   host: ""
 
+mysql:
+  persistence:
+    enabled: false

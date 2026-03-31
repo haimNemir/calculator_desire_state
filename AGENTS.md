@@ -1,0 +1,2 @@
+- Prefer small commits and minimal diffs.
+- Run tests before suggesting final changes.

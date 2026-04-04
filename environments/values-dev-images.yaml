@@ -2,12 +2,12 @@ backend:
   image:
     repository: 757630643687.dkr.ecr.us-east-1.amazonaws.com/calculator-dev-backend
     # This file is CI-owned so image updates do not collide with human-managed config.
-    tag: sha-4f2deb1
+    tag: sha-ec072f2
     pullPolicy: IfNotPresent
 
 frontend:
   image:
     repository: 757630643687.dkr.ecr.us-east-1.amazonaws.com/calculator-dev-frontend
     # This file is CI-owned so image updates do not collide with human-managed config.
-    tag: sha-4f2deb1
+    tag: sha-ec072f2
     pullPolicy: IfNotPresent
